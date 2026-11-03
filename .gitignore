@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Uploaded PDFs
+uploads/*
+!uploads/.gitkeep
+
+# Frontend (React)
+node_modules/
+dist/
+
+# System files
+.DS_Store
+Thumbs.db
