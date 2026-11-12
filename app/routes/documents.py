@@ -89,7 +89,7 @@ def upload_document(uploaded_pdf: UploadFile = File(...), db: Session = Depends(
     
 # Search endpoint POST ---------------------------------------------------------------------------
 
-@router.post("/search")
+@router.post("/ask")
 def search_documents(
     request: SearchRequest,
     db: Session = Depends(get_db)
@@ -108,9 +108,12 @@ def search_documents(
     answer = generate_answer(request.question, chunks)
     
     print("STEP 3: Generation completed", flush=True)
-    
 
     return {
         "question": request.question,
-        "answer": answer
+        "answer": answer,
+        
+        "retrieved_chunks":[
+            "\n\n".join(chunk.content for chunk in chunks)
+        ]
     }
